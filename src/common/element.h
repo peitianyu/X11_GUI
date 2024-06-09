@@ -2,6 +2,7 @@
 #define __ELEMENT_H__
 
 #include "x11_gui.h"
+#include <cmath>
 
 struct X11_Element
 {
@@ -29,6 +30,18 @@ struct X11_Point : public X11_Element {
     int size;
     X11_Point(float x, float y, int size, XColor color) : X11_Element(x, y, color), size(size) {}
     void draw(X11Gui &gui, const float& scale_factor) override { gui.set_color(color); gui.point(x, y, size*scale_factor+0.5); }
+};
+
+struct X11_Pose : public X11_Element {
+    int size;
+    float theta;
+    X11_Pose(float x, float y, float theta, int size, XColor color) : X11_Element(x, y, color), size(size), theta(theta) {}
+    void draw(X11Gui &gui, const float& scale_factor) override {
+        gui.set_color(color);
+        float draw_size = size*scale_factor;
+        gui.line(x, y, x + 2*draw_size*cos(theta), y+2*draw_size*sin(theta));
+        gui.point(x, y, draw_size+0.5);
+    }
 };
 
 struct X11_Line : public X11_Element {
