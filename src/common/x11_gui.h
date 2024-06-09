@@ -14,6 +14,20 @@
 #define X11_YELLOW (XColor){.red = 255, .green = 255, .blue = 0}
 #define X11_COLOR(x) (XColor){.red = x, .green = x, .blue = x}
 
+enum InteractionType {
+	MOUSE, KEY
+};
+
+enum MouseType {
+    MOUSE_UP, MOUSE_DOWN
+};
+
+struct Interaction {
+	int type;
+	uint value;
+	int coord[2];
+};
+
 class X11Gui
 {
 public:
@@ -23,6 +37,8 @@ public:
 
     void pixel(int x, int y);
 
+    void point(int x, int y, int size);
+
     void line(int x1, int y1, int x2, int y2);
 
     void polygon(int points[][2], int n);
@@ -31,13 +47,17 @@ public:
 
     void grid(int x, int y, int w, int h, int r);
 
-    void cell(int x, int y, int w, int h);
+    void cell(int x, int y, int size);
 
     void flush();
 
     void clear();
 
     void close();
+
+    Interaction get_event();
+
+    XEvent event();
 private:
     void set_background_color(XColor c);
 private:

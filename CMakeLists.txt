@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.3)
 project(x11_gui)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -std=c++14 -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -std=c++14 -fPIC -pthread")
 add_definitions(-DTEST_ENABLE)
 
 include_directories(src)
