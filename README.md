@@ -1,7 +1,7 @@
-# 简单可视化工具, 使用x11实现, 在ubuntu20上运行
+# 2dslam可视化工具
 
 ## 特点
-```
+```cpp
 JUST_RUN_TEST(x11_window, test)
 TEST(x11_window, test)
 {
